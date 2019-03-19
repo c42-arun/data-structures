@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphs\Graph.cs" />
     <Compile Include="Heaps\MaxBinaryHeap.cs" />
     <Compile Include="Heaps\PriorityQueue.cs" />
     <Compile Include="Program.cs" />
@@ -52,6 +53,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Graphs\graph.js" />
     <Content Include="Heaps\MaxBinaryHeap.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
-﻿using DataStructures.Heaps;
+﻿using DataStructures.Graphs;
+using DataStructures.Heaps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace DataStructures
         static void Main(string[] args)
         {
             //MaxBinaryHeapDemo();
-            PriorityQueueDemo();
+            //PriorityQueueDemo();
+            GraphCreateDemo();
 
             Console.ReadLine();
         }
@@ -70,6 +72,32 @@ namespace DataStructures
                 Console.WriteLine($"Heap after getting max {maxValue.Priority} - {maxValue.Val}:");
                 pq.PrintItems();
 
+            }
+        }
+
+        private static void GraphCreateDemo()
+        {
+            var g = new Graph();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
+            g.AddVertex("D");
+            g.AddVertex("E");
+            g.AddVertex("F");
+
+            g.AddEdge("A", "B");
+            g.AddEdge("A", "C");
+            g.AddEdge("B", "D");
+            g.AddEdge("C", "E");
+            g.AddEdge("D", "E");
+            g.AddEdge("D", "F");
+            g.AddEdge("E", "F");
+
+            List<string> allNodes = g.DfsRecursive("A");
+
+            foreach(string n in allNodes)
+            {
+                Console.WriteLine(n);
             }
         }
     }
