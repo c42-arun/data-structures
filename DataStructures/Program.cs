@@ -1,4 +1,5 @@
-﻿using DataStructures.Graphs;
+﻿using DataStructures.DijsktrasAlgorithm;
+using DataStructures.Graphs;
 using DataStructures.Heaps;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace DataStructures
         {
             //MaxBinaryHeapDemo();
             //PriorityQueueDemo();
-            GraphCreateDemo();
+            //GraphCreateDemo();
+            DijkstrasAlgorithm();
 
             Console.ReadLine();
         }
@@ -98,6 +100,33 @@ namespace DataStructures
             foreach(string n in allNodes)
             {
                 Console.WriteLine(n);
+            }
+        }
+
+        private static void DijkstrasAlgorithm()
+        {
+            var g = new WeightedGraph();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
+            g.AddVertex("D");
+            g.AddVertex("E");
+            g.AddVertex("F");
+
+            g.AddEdge("A", "B", 4);
+            g.AddEdge("A", "C", 2);
+            g.AddEdge("B", "E", 3);
+            g.AddEdge("C", "D", 2);
+            g.AddEdge("C", "F", 4);
+            g.AddEdge("D", "E", 3);
+            g.AddEdge("D", "F", 1);
+            g.AddEdge("E", "F", 1);
+
+            List<string> pathfromAtoE = g.DijkstraShortestPath("A", "E");
+
+            foreach (string node in pathfromAtoE)
+            {
+                Console.WriteLine(node);
             }
         }
     }
