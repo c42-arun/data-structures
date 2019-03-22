@@ -9,9 +9,9 @@ namespace DataStructures.Heaps
     public class Node
     {
         public string Val { get; set; }
-        public int Priority { get; set; }
+        public double Priority { get; set; }
 
-        public Node(int priority, string val)
+        public Node(double priority, string val)
         {
             Priority = priority;
             Val = val;
@@ -22,6 +22,8 @@ namespace DataStructures.Heaps
     public class PriorityQueue
     {
         private readonly List<Node> nodes = new List<Node>();
+
+        public bool IsEmpty { get { return !nodes.Any(); } }
 
         public void PrintItems()
         {
@@ -37,7 +39,7 @@ namespace DataStructures.Heaps
             Console.WriteLine(printString);
         }
 
-        public void Enqueue(string val, int priority)
+        public void Enqueue(string val, double priority)
         {
             Node n = new Node(priority, val);
 

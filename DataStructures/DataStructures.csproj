@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DijsktrasAlgorithm\WeightedGraph.cs" />
     <Compile Include="Graphs\Graph.cs" />
     <Compile Include="Heaps\MaxBinaryHeap.cs" />
     <Compile Include="Heaps\PriorityQueue.cs" />

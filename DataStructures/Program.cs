@@ -1,6 +1,6 @@
-﻿using DataStructures.Graphs;
+﻿using DataStructures.DijsktrasAlgorithm;
+using DataStructures.Graphs;
 using DataStructures.Heaps;
-using DataStructures.Recursion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +16,7 @@ namespace DataStructures
             //MaxBinaryHeapDemo();
             //PriorityQueueDemo();
             //GraphCreateDemo();
-            //RecursivePalindromeCheck();
-            RecursivePowerFunction();
+            DijkstrasAlgorithm();
 
             Console.ReadLine();
         }
@@ -80,24 +79,6 @@ namespace DataStructures
 
         private static void GraphCreateDemo()
         {
-            /*
-                    A
-                /       \
-                B        C
-                |        |
-                D ------ E
-                 \      /
-                    F
-                
-            {
-                A: [B, C],
-                B: [A, D],
-                C: [A, E],
-                D: [B, E, F],
-                E: [C, D, F],
-                F: [D, E]
-            }
-             */
             var g = new Graph();
             g.AddVertex("A");
             g.AddVertex("B");
@@ -114,48 +95,39 @@ namespace DataStructures
             g.AddEdge("D", "F");
             g.AddEdge("E", "F");
 
-            Console.WriteLine("Recursive DFS:");
             List<string> allNodes = g.DfsRecursive("A");
 
             foreach(string n in allNodes)
             {
                 Console.WriteLine(n);
             }
-
-            Console.WriteLine("\n\nIterative DFS:");
-            allNodes = g.DfsIterative("A");
-
-            foreach (string n in allNodes)
-            {
-                Console.WriteLine(n);
-            }
-
-            Console.WriteLine("\n\nBFS:");
-            allNodes = g.BfsTraversal("A");
-
-            foreach (string n in allNodes)
-            {
-                Console.WriteLine(n);
-            }
         }
 
-        private static void RecursivePalindromeCheck()
+        private static void DijkstrasAlgorithm()
         {
-            string s = "Rotor";
+            var g = new WeightedGraph();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
+            g.AddVertex("D");
+            g.AddVertex("E");
+            g.AddVertex("F");
 
-            Palindrome p = new Palindrome();
+            g.AddEdge("A", "B", 4);
+            g.AddEdge("A", "C", 2);
+            g.AddEdge("B", "E", 3);
+            g.AddEdge("C", "D", 2);
+            g.AddEdge("C", "F", 4);
+            g.AddEdge("D", "E", 3);
+            g.AddEdge("D", "F", 1);
+            g.AddEdge("E", "F", 1);
 
-            string isOrIsNot = p.IsPalindrome(s) ? "is" : "is not";
+            List<string> pathfromAtoE = g.DijkstraShortestPath("A", "E");
 
-            Console.WriteLine($"Rotor {isOrIsNot} a palindrome");
-        }
-
-        private static void RecursivePowerFunction()
-        {
-            PowerFunction p = new PowerFunction();
-            int num = 7;
-            int exp = -3;
-            Console.WriteLine($"{num} ^ {exp} is {p.Power(num, exp)}.");
+            foreach (string node in pathfromAtoE)
+            {
+                Console.WriteLine(node);
+            }
         }
     }
 }
