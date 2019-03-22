@@ -16,7 +16,9 @@ namespace DataStructures
             //MaxBinaryHeapDemo();
             //PriorityQueueDemo();
             //GraphCreateDemo();
-            DijkstrasAlgorithm();
+            //DijkstrasAlgorithm();
+            //RecursivePalindromeCheck();
+            RecursivePowerFunction();
 
             Console.ReadLine();
         }
@@ -128,6 +130,25 @@ namespace DataStructures
             {
                 Console.WriteLine(node);
             }
+        }
+
+        private static void RecursivePalindromeCheck()
+        {
+            string s = "Rotor";
+
+            Palindrome p = new Palindrome();
+
+            string isOrIsNot = p.IsPalindrome(s) ? "is" : "is not";
+
+            Console.WriteLine($"Rotor {isOrIsNot} a palindrome");
+        }
+
+        private static void RecursivePowerFunction()
+        {
+            PowerFunction p = new PowerFunction();
+            int num = 7;
+            int exp = -3;
+            Console.WriteLine($"{num} ^ {exp} is {p.Power(num, exp)}.");
         }
     }
 }
