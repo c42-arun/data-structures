@@ -57,6 +57,7 @@ namespace DataStructures.Graphs
             graphNodes.Add(vertex);
             visitedNodes[vertex] = true;
 
+            // recursively vist each neighbour if not already visited
             foreach(string neighbour in AdjacencyList[vertex])
             {
                 if (!visitedNodes.ContainsKey(neighbour))
@@ -64,6 +65,64 @@ namespace DataStructures.Graphs
                     RecursiveDfs(neighbour, graphNodes, visitedNodes);
                 }
             }
+        }
+
+        public List<string> DfsIterative(string vertex)
+        {
+            List<string> result = new List<string>();
+            Dictionary<string, bool> visitedNodes = new Dictionary<string, bool>();
+
+            // we use a stack ourselves instead of call stack in recursive solution
+            Stack<string> stack = new Stack<string>();
+            stack.Push(vertex);
+            visitedNodes[vertex] = true;
+
+            while(stack.Any())
+            {
+                string v = stack.Pop();
+
+                result.Add(v);
+
+                foreach(string neighbour in AdjacencyList[v])
+                {
+                    if (!visitedNodes.ContainsKey(neighbour))
+                    {
+                        visitedNodes[neighbour] = true; // immediately add to visited so it doesn't get pushed more than once
+                        stack.Push(neighbour);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public List<string> BfsTraversal(string vertex)
+        {
+            List<string> result = new List<string>();
+            Dictionary<string, bool> visitedNodes = new Dictionary<string, bool>();
+
+            // we use a queue instead of a stack for a BF traversal
+            Queue<string> queue = new Queue<string>();
+            queue.Enqueue(vertex);
+            visitedNodes[vertex] = true;
+
+            while(queue.Any())
+            {
+                string v = queue.Dequeue();
+
+                result.Add(v);
+
+                foreach(string neighbour in AdjacencyList[v])
+                {
+                    if (!visitedNodes.ContainsKey(neighbour))
+                    {
+                        visitedNodes[neighbour] = true;
+                        queue.Enqueue(neighbour);
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }
